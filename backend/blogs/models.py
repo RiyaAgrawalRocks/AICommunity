@@ -1,7 +1,6 @@
 from django.db import models
-import uuid
 
-class blog(models.Model):
+class Blog(models.Model):
     title=models.CharField(max_length=100, default=None)
     authors=models.CharField(max_length=100, default=None)
     content=models.TextField()

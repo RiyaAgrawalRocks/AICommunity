@@ -1,17 +1,17 @@
 from rest_framework import serializers
-from .models import blog
+from .models import Blog
 
-class BlogSerializer(serializers.Serializer):
+class BlogSerializer(serializers.ModelSerializer):
     class Meta:
-        model = blog
+        model = Blog
         fields = '__all__'
 
-        def create(self, validated_data):
-            return blog.objects.create(**validated_data)
+    def create(self, validated_data):
+        return Blog.objects.create(**validated_data)
         
-        def update(self, blog, validated_data):
-            blog.title=validated_data.get('title', blog.title)
-            blog.authors=validated_data.get('authors', blog.authors)
-            blog.content=validated_data.get('content', blog.content)
-            blog.save()
-            return blog
+    def update(self, instance, validated_data):
+        instance.title=validated_data.get('title', instance.title)
+        instance.authors=validated_data.get('authors', instance.authors)
+        instance.content=validated_data.get('content', instance.content)
+        instance.save()
+        return instance
