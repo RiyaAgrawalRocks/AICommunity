@@ -14,22 +14,10 @@ def display_all(request):
 
 #specific blog
 @api_view(['GET'])
-def display_blog(request, title):
+def display_blog(request, id):
     try:
-        blogs=Blog.objects.get(title=title)
+        blogs=Blog.objects.get(id=id)
     except Blog.DoesNotExist:
         return Response(status=status.HTTP_404_NOT_FOUND)
     data=BlogSerializer(blogs).data
     return Response(data=data, status=status.HTTP_200_OK)
-
-
-#create
-@api_view(['POST'])
-def create(request):
-    pass
-
-
-#edit
-@api_view(['PATCH'])
-def edit(request):
-    pass
