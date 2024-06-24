@@ -1,2 +1,2 @@
-# BlogPostAICommunity
-Blog Post for the website of AI Community, IITB
+# AICommunity
+The website of AI Community, IITB
