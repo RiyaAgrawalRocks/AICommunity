@@ -1,8 +1,8 @@
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework import status
-from .serializers import BlogSerializer
-from .models import Blog
+from .serializers import *
+from .models import Blog, Member
 
 #all blogs
 @api_view(['GET'])
@@ -20,4 +20,11 @@ def display_blog(request, id):
     except Blog.DoesNotExist:
         return Response(status=status.HTTP_404_NOT_FOUND)
     data=BlogSerializer(blogs).data
+    return Response(data=data, status=status.HTTP_200_OK)
+
+#display members
+@api_view(['GET'])
+def display_members(request):
+    members=Member.objects.all()
+    data=MemberSerializer(members, many=True).data
     return Response(data=data, status=status.HTTP_200_OK)
